@@ -14,8 +14,8 @@
 void hadronTemplate(){//main  
   
   TChain *es =new TChain("ggNtuplizer/EventTree");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
   //TFile *file = new TFile("/export/home/hl2/fake-photon-study/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
   //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
