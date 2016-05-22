@@ -17,7 +17,7 @@ void hadronTemplate(){//main
   //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
   //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
-  TFile *file = new TFile("/export/cmss2/mengleis/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
+  TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
   TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
