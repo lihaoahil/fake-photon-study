@@ -81,7 +81,7 @@ UShort_t LooseCut(float eta, float HoverE, float sigma, float chIso, float neuIs
 }
 
 
-// TO USE LOOSECUT IN MAIN
+/* TO USE LOOSECUT IN MAIN
 {
 
       std::vector<Photon> phovec;
@@ -100,4 +100,4 @@ UShort_t LooseCut(float eta, float HoverE, float sigma, float chIso, float neuIs
    if(((decision >> 4) &1) ==1)std::cout << "pass rho-corrected Charged hadron isolation";
    if(((decision >> 5) &1) ==1)std::cout << "pass rho-corrected photon isolation";
 }
-
+*/
