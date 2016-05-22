@@ -14,13 +14,12 @@
 void gammaTemplate(){//main  
   
   TChain *es =new TChain("ggNtuplizer/EventTree");
-  es->Add("/export/cmss2/mengleis/DoubleMu/job_DoubleMu_Run2015C_Oct05_miniAOD.root");
-  es->Add("/export/cmss2/mengleis/DoubleMu/job_DoubleMu_Run2015D_Oct05_miniAOD.root");
-  es->Add("/export/cmss2/mengleis/DoubleMu/job_DoubleMu_Run2015D_PR_v4_miniAOD.root");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
  
 
-  TFile *gSample = new TFile("gammaTemplate.root","RECREATE");
+  TFile *gSample = new TFile("gammaTemplateMC.root","RECREATE");
 
 
 
@@ -114,7 +113,7 @@ void gammaTemplate(){//main
     Double_t dEta0, dEta1, dPhi0, dPhi1, deltaR0, deltaR1;
 
 
-    const unsigned nEvts = es->GetEntries(); 
+    const unsigned nEvts = 200000;//es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
 
      for (unsigned ievt(0); ievt<nEvts; ++ievt)    //loop over all the events
