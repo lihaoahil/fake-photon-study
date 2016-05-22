@@ -113,7 +113,7 @@ void gammaTemplate(){//main
     Double_t dEta0, dEta1, dPhi0, dPhi1, deltaR0, deltaR1;
 
 
-    const unsigned nEvts = 200000;//es->GetEntries(); 
+    const unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
 
      for (unsigned ievt(0); ievt<nEvts; ++ievt)    //loop over all the events

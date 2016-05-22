@@ -13,12 +13,12 @@
 
 void hadronTemplate(){//main  
   
-  //TChain *es =new TChain("ggNtuplizer/EventTree");
-  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
-  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
+  TChain *es =new TChain("ggNtuplizer/EventTree");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
+  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
-  TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
-  TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
+  //TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
+  //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
   TFile *hSample = new TFile("hadronicTemplateMC.root","RECREATE");
@@ -134,7 +134,7 @@ void hadronTemplate(){//main
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    nEvts = 200000;//
+    //nEvts = 200000;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
