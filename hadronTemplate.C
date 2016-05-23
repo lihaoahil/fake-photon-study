@@ -21,7 +21,7 @@ void hadronTemplate(){//main
   //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
-  TFile *hSample = new TFile("hadronicTemplateMC.root","RECREATE");
+  TFile *hSample = new TFile("hadronicTemplateMCv1.root","RECREATE");
 
 
 
@@ -247,7 +247,7 @@ void hadronTemplate(){//main
      
      
      hSample->Write();
-     std::cout << "All histograms have been saved in hadronicTemplate.root."<<std::endl;
+     std::cout << "All histograms have been saved in hadronicTemplateMCv1.root."<<std::endl;
     
      //std::cout<<counter<<std::endl;
        
