@@ -259,7 +259,7 @@ void test(){//main
 		      dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
 		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
 		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
-		      std::cout<<mcPID<<"  "<<mcMomPID<<"  "<<mcGMomPID<<"  "<<deltaR2<<std::endl;
+		      std::cout<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
 	      }
 	    std::cout<<"-----------------"<<std::endl;
