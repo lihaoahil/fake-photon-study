@@ -266,7 +266,7 @@ void test(){//main
 
     	      }
     	   
-            //std::cout<<"-----------------"<<std::endl;
+            std::cout<<"-----------------"<<std::endl;
                 hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
                 hEBEt -> Fill ((*phoEt)[ipho]);
                 for(unsigned ibin(0); ibin<16;ibin++)
