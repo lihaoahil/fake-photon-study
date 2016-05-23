@@ -208,24 +208,24 @@ void hadronTemplate(){//main
         //target
         if((((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==1)  && (((decision >> 5) &1) ==1) )
           {
-        targetEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-        targetEBEt -> Fill ((*phoEt)[ipho]);
-        for(unsigned ibin(0); ibin<16;ibin++)
-           {
-             if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) targetHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-           }
+          targetEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+          targetEBEt -> Fill ((*phoEt)[ipho]);
+          for(unsigned ibin(0); ibin<16;ibin++)
+            {
+              if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) targetHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+            }
           }
           //hadronic template
-        if( (((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 5) &1) ==1) )
+        if( (((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==0)  && (((decision >> 5) &1) ==1) )
           {
         
-        if((*phoPFChIso)[ipho] >15)//select hardronic template by put upper bound of I_ch.
+          if((*phoPFChIso)[ipho] <15)//select hardronic template by put upper bound of I_ch.
           {
             hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
             hEBEt -> Fill ((*phoEt)[ipho]);
             for(unsigned ibin(0); ibin<16;ibin++)
               {
-            if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+              if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
               }
           }
 
