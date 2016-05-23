@@ -25,7 +25,7 @@ void test(){//main
 
   //gen-level
     int                    nMC=0;
-    std::vector<Int_t>    *mcPID = 0;
+    std::vector<int>      *mcPID = 0;
     std::vector<float>    *mcVtx =0;
     std::vector<float>    *mcVty = 0;
     std::vector<float>    *mcVtz = 0;
@@ -166,7 +166,7 @@ void test(){//main
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    nEvts = 1000;
+    nEvts = 4000;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
@@ -256,10 +256,10 @@ void test(){//main
 	    dEta2=0;dPhi2=0;deltaR2=0;
 	    for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
 	      {
-		dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
-		dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
-		deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
-		std::cout<<mcPID<<"  "<<mcMomPID<<"  "<<deltaR2<<std::endl;
+		      dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
+		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
+		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
+		      std::cout<<mcPID<<"  "<<mcMomPID<<"  "<<mcGMomPID<<"  "<<deltaR2<<std::endl;
 
 	      }
 	    std::cout<<"-----------------"<<std::endl;
