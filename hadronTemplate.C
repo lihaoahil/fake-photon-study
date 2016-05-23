@@ -134,7 +134,7 @@ void hadronTemplate(){//main
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    //nEvts = 200000;
+    nEvts = 200000;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
