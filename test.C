@@ -252,7 +252,7 @@ void test(){//main
           {
         
     	    if((*phoPFChIso)[ipho] > 15) continue;//select hardronic template by put upper bound of I_ch.
-    	    std::cout<<"-----------------"<<std::endl;
+    	    //std::cout<<"-----------------"<<std::endl;
     	    dEta2=0;dPhi2=0;deltaR2=0;
     	    for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
     	      {
@@ -266,7 +266,7 @@ void test(){//main
 
     	      }
     	   
-            std::cout<<"-----------------"<<std::endl;
+            //std::cout<<"-----------------"<<std::endl;
                 hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
                 hEBEt -> Fill ((*phoEt)[ipho]);
                 for(unsigned ibin(0); ibin<16;ibin++)
