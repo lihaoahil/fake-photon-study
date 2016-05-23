@@ -240,12 +240,12 @@ void test(){//main
         //target
         if((((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==1)  && (((decision >> 5) &1) ==1) )
           {
-          targetEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-          targetEBEt -> Fill ((*phoEt)[ipho]);
-          for(unsigned ibin(0); ibin<16;ibin++)
-            {
-              if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) targetHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-            }
+              targetEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+              targetEBEt -> Fill ((*phoEt)[ipho]);
+              for(unsigned ibin(0); ibin<16;ibin++)
+                {
+                  if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) targetHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+                }
           }
           //hadronic template
         if( (((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==0)  && (((decision >> 5) &1) ==1) )
@@ -259,22 +259,23 @@ void test(){//main
     		      dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
     		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
     		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
-    		      std::cout<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
+                  std::cout<<"event #"<< ievt <<"reco photon#"<<ipho<<" "<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
     	      }
-    	       std::cout<<"-----------------"<<std::endl;
+    	   
+            std::cout<<"-----------------"<<std::endl;
                 hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
                 hEBEt -> Fill ((*phoEt)[ipho]);
                 for(unsigned ibin(0); ibin<16;ibin++)
                   {
-                  if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+                    if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
                   }
               
 
           }//end of hardonic selection
 
       }//end of gamma loop
-      std::cout<<"----------------------------------------------------------"<<std::endl;
+      
 
     
 
