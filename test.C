@@ -260,7 +260,7 @@ void test(){//main
     		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
     		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
                   if(deltaR2 > 0.05) continue;
-                  if((*mcPID)[imc] != 22) continue;
+                  //if((*mcPID)[imc] != 22) continue;
                   
                   std::cout<<"event #"<< ievt <<"reco photon#"<<ipho<<" "<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
