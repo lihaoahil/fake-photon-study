@@ -23,7 +23,22 @@ void hadronTemplate(){//main
 
   TFile *hSample = new TFile("hadronicTemplateMCv1.root","RECREATE");
 
-
+    //gen-level
+    int                    nMC=0;
+    std::vector<int>      *mcPID = 0;
+    std::vector<float>    *mcVtx =0;
+    std::vector<float>    *mcVty = 0;
+    std::vector<float>    *mcVtz = 0;
+    std::vector<float>    *mcPt = 0;
+    std::vector<float>    *mcMass = 0;
+    std::vector<float>    *mcEta = 0;
+    std::vector<float>    *mcPhi = 0;
+    std::vector<float>    *mcE = 0;
+    std::vector<float>    *mcEt = 0;
+    std::vector<int>      *mcGMomPID = 0;
+    std::vector<int>      *mcMomPID = 0;
+    std::vector<int>      *mcStatus = 0;
+    std::vector<int>      *mcStatusFlag = 0;
 
     //reco-photon
     int                    nPho=0;
@@ -66,6 +81,21 @@ void hadronTemplate(){//main
 
 //Set branches to photon variables
 
+    es->SetBranchAddress("nMC",&nMC);
+    es->SetBranchAddress("mcPID",&mcPID);  
+    es->SetBranchAddress("mcVtx",&mcVtx);
+    es->SetBranchAddress("mcVty",&mcVty);  
+    es->SetBranchAddress("mcVtz",&mcVtz); 
+    es->SetBranchAddress("mcPt",&mcPt);
+    es->SetBranchAddress("mcMass",&mcMass);
+    es->SetBranchAddress("mcEta",&mcEta);
+    es->SetBranchAddress("mcPhi",&mcPhi);
+    es->SetBranchAddress("mcE",&mcE);
+    es->SetBranchAddress("mcEt",&mcEt);
+    es->SetBranchAddress("mcGMomPID",&mcGMomPID);
+    es->SetBranchAddress("mcMomPID",&mcMomPID);
+    es->SetBranchAddress("mcStatus",&mcStatus);
+    es->SetBranchAddress("mcStatusFlag",&mcStatusFlag);
 
     es->SetBranchAddress("HLTEleMuX",&HLTEleMuX);
     es->SetBranchAddress("pfMET",&pfMET);
@@ -129,12 +159,13 @@ void hadronTemplate(){//main
     unsigned muonID(0);
     Double_t muonPt(0);
 
-    Double_t dEta0, dEta1, dPhi0, dPhi1, deltaR0, deltaR1;
+    Double_t dEta0, dEta1, dEta2, dPhi0, dPhi1, dPhi2, deltaR0, deltaR1, deltaR2;
+    Int_t jetFlag(0);
 
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    //nEvts = 200000;
+    nEvts = 200000;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
@@ -219,15 +250,27 @@ void hadronTemplate(){//main
         if( (((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==0)  && (((decision >> 5) &1) ==1) )
           {
         
-          if((*phoPFChIso)[ipho] <15)//select hardronic template by put upper bound of I_ch.
-          {
+          if((*phoPFChIso)[ipho] >15) continue;//select hardronic template by put upper bound of I_ch.
+          dEta2=0;dPhi2=0;deltaR2=0;jetFlag=0;
+          for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
+            {
+              dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
+              dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
+              deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
+              if(deltaR2 > 0.05) continue;
+              if((*mcPID)[imc] != 22) continue;
+                  jetFlag=1;
+              //std::cout<<"event #"<< ievt <<"reco photon#"<<ipho<<" "<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
+
+            }
+            if(jetFlag==0)continue;
             hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
             hEBEt -> Fill ((*phoEt)[ipho]);
             for(unsigned ibin(0); ibin<16;ibin++)
               {
               if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
               }
-          }
+          
 
           }
 
