@@ -192,15 +192,15 @@ void test(){//main
     muonPt=0;
     
         for(unsigned imu(0);imu < nMu; imu++)
-      {
-        if (!(*muIsTightID)[imu]) continue;
-        if(fabs((*muEta)[imu])>2.4) continue;
-        if(muonPt<(*muPt)[imu]) 
           {
-        muonPt = (*muPt)[imu];
-        muonID = imu;
+            if (!(*muIsTightID)[imu]) continue;
+            if(fabs((*muEta)[imu])>2.4) continue;
+            if(muonPt<(*muPt)[imu]) 
+              {
+            muonPt = (*muPt)[imu];
+            muonID = imu;
+              }
           }
-      }
     if(muonPt == 0) continue;
          
     
@@ -213,7 +213,7 @@ void test(){//main
         isEndCap = (fabs((*phoEta)[ipho]) > 1.560 && fabs((*phoEta)[ipho]) < 2.5);
         if(!isBarrel && !isEndCap) continue;
         if((*phoEt)[ipho]<25) continue;
-        if((*phoEleVeto)[ipho] == 1 ) continue;
+        if((*phoEleVeto)[ipho] != 0 ) continue;
         decision = LooseCut((*phoEta)[ipho], (*phoHoverE)[ipho], (*phoSigmaIEtaIEtaFull5x5)[ipho], (*phoPFChIso)[ipho], (*phoPFNeuIso)[ipho], (*phoPFPhoIso)[ipho], (*phoEt)[ipho], rho);
 
          //fill the histograms for barrels now.
@@ -226,15 +226,15 @@ void test(){//main
         if(deltaR0<0.8) continue;
         flagFSR = 0;
         for(unsigned imu(0); imu < nMu; imu++)
-          {
-        dEta1 = fabs((*phoEta)[ipho]-(*muEta)[imu]);
-        dPhi1 = fabs((*phoPhi)[ipho]-(*muPhi)[imu]);
-        deltaR1 = TMath::Sqrt(dEta0*dEta0+dPhi0*dPhi0);
-        if((deltaR1<0.3) && ((*muPt)[imu]>2))
-          {
-            flagFSR = 1;
-          }
-          }
+              {
+                dEta1 = fabs((*phoEta)[ipho]-(*muEta)[imu]);
+                dPhi1 = fabs((*phoPhi)[ipho]-(*muPhi)[imu]);
+                deltaR1 = TMath::Sqrt(dEta0*dEta0+dPhi0*dPhi0);
+                if((deltaR1<0.3) && ((*muPt)[imu]>2))
+                  {
+                    flagFSR = 1;
+                  }
+              }
         if(flagFSR == 1) continue;
         
         //target
@@ -251,29 +251,30 @@ void test(){//main
         if( (((decision >> 2) &1) ==1) && (((decision >> 3) &1) ==1) && (((decision >> 4) &1) ==0)  && (((decision >> 5) &1) ==1) )
           {
         
-	    if((*phoPFChIso)[ipho] > 15) continue;//select hardronic template by put upper bound of I_ch.
-	    std::cout<<"-----------------"<<std::endl;
-	    dEta2=0;dPhi2=0;deltaR2=0;
-	    for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
-	      {
-		      dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
-		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
-		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
-		      std::cout<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
+    	    if((*phoPFChIso)[ipho] > 15) continue;//select hardronic template by put upper bound of I_ch.
+    	    std::cout<<"-----------------"<<std::endl;
+    	    dEta2=0;dPhi2=0;deltaR2=0;
+    	    for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
+    	      {
+    		      dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
+    		      dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
+    		      deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
+    		      std::cout<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
-	      }
-	    std::cout<<"-----------------"<<std::endl;
-            hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-            hEBEt -> Fill ((*phoEt)[ipho]);
-            for(unsigned ibin(0); ibin<16;ibin++)
-              {
-              if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
-              }
-          
+    	      }
+    	       std::cout<<"-----------------"<<std::endl;
+                hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+                hEBEt -> Fill ((*phoEt)[ipho]);
+                for(unsigned ibin(0); ibin<16;ibin++)
+                  {
+                  if(((*phoEt)[ipho]>binrange[ibin]) && ((*phoEt)[ipho]<binrange[ibin+1]) ) hTemplateHist[ibin]->Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
+                  }
+              
 
-          }
+          }//end of hardonic selection
 
-      }
+      }//end of gamma loop
+      std::cout<<"----------------------------------------------------------"<<std::endl;
 
     
 
