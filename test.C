@@ -213,7 +213,7 @@ void test(){//main
         isEndCap = (fabs((*phoEta)[ipho]) > 1.560 && fabs((*phoEta)[ipho]) < 2.5);
         if(!isBarrel && !isEndCap) continue;
         if((*phoEt)[ipho]<25) continue;
-        if((*phoEleVeto)[ipho] != 0 ) continue;
+        if((*phoEleVeto)[ipho] == 1 ) continue;
         decision = LooseCut((*phoEta)[ipho], (*phoHoverE)[ipho], (*phoSigmaIEtaIEtaFull5x5)[ipho], (*phoPFChIso)[ipho], (*phoPFNeuIso)[ipho], (*phoPFPhoIso)[ipho], (*phoEt)[ipho], rho);
 
          //fill the histograms for barrels now.
