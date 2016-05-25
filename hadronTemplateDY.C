@@ -22,7 +22,7 @@ void hadronTemplateDY(){//main
   //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
-  TFile *hSample = new TFile("template/DYhadronicTemplateMC.root","RECREATE");
+  TFile *hSample = new TFile("template/DYhadronicTemplateMCv2.root","RECREATE");
 
     //gen-level
     int                    nMC=0;
@@ -224,7 +224,7 @@ void hadronTemplateDY(){//main
         isEndCap = (fabs((*phoEta)[ipho]) > 1.560 && fabs((*phoEta)[ipho]) < 2.5);
         if(!isBarrel && !isEndCap) continue;
         if((*phoEt)[ipho]<25) continue;
-        if((*phoEleVeto)[ipho] != 0 ) continue;
+        //if((*phoEleVeto)[ipho] != 0 ) continue;
         if((*phohasPixelSeed)[ipho] != 0) continue;
         decision = LooseCut((*phoEta)[ipho], (*phoHoverE)[ipho], (*phoSigmaIEtaIEtaFull5x5)[ipho], (*phoPFChIso)[ipho], (*phoPFNeuIso)[ipho], (*phoPFPhoIso)[ipho], (*phoEt)[ipho], rho);
 
@@ -303,7 +303,7 @@ void hadronTemplateDY(){//main
      
      
      hSample->Write();
-     std::cout << "All histograms have been saved in DYhadronicTemplateMC.root."<<std::endl;
+     std::cout << "All histograms have been saved in DYhadronicTemplateMCv2.root."<<std::endl;
     
      //std::cout<<counter<<std::endl;
        
