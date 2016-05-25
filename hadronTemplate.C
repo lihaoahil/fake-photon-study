@@ -47,6 +47,7 @@ void hadronTemplate(){//main
     std::vector<float>    *phoEt = 0;
     std::vector<float>    *phoE = 0;
     std::vector<int>      *phoEleVeto = 0;
+    std::vector<int>      *phohasPixelSeed = 0;
     std::vector<float>    *phoHoverE = 0;
     std::vector<float>    *phoSigmaIEtaIEtaFull5x5 = 0;
     std::vector<float>    *phoPFChIso = 0;
@@ -105,6 +106,7 @@ void hadronTemplate(){//main
     es->SetBranchAddress("phoEt",&phoEt);  
     es->SetBranchAddress("phoE",&phoE);
     es->SetBranchAddress("phoEleVeto",&phoEleVeto); //electron veto
+    es->SetBranchAddress("phohasPixelSeed",&phohasPixelSeed);
     es->SetBranchAddress("phoHoverE",&phoHoverE);   //H over E
     es->SetBranchAddress("phoSigmaIEtaIEtaFull5x5",&phoSigmaIEtaIEtaFull5x5);
     es->SetBranchAddress("phoPFChIso",&phoPFChIso); //Charged hadron isolation

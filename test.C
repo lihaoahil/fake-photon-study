@@ -47,6 +47,7 @@ void test(){//main
     std::vector<float>    *phoEt = 0;
     std::vector<float>    *phoE = 0;
     std::vector<int>      *phoEleVeto = 0;
+    std::vector<int>      *phohasPixelSeed = 0;
     std::vector<float>    *phoHoverE = 0;
     std::vector<float>    *phoSigmaIEtaIEtaFull5x5 = 0;
     std::vector<float>    *phoPFChIso = 0;
@@ -107,6 +108,7 @@ void test(){//main
     es->SetBranchAddress("phoEt",&phoEt);  
     es->SetBranchAddress("phoE",&phoE);
     es->SetBranchAddress("phoEleVeto",&phoEleVeto); //electron veto
+    es->SetBranchAddress("phohasPixelSeed",&phohasPixelSeed);
     es->SetBranchAddress("phoHoverE",&phoHoverE);   //H over E
     es->SetBranchAddress("phoSigmaIEtaIEtaFull5x5",&phoSigmaIEtaIEtaFull5x5);
     es->SetBranchAddress("phoPFChIso",&phoPFChIso); //Charged hadron isolation
@@ -214,6 +216,7 @@ void test(){//main
         if(!isBarrel && !isEndCap) continue;
         if((*phoEt)[ipho]<25) continue;
         if((*phoEleVeto)[ipho] != 0 ) continue;
+        if((*phohasPixelSeed)[ipho] != 0) continue;
         decision = LooseCut((*phoEta)[ipho], (*phoHoverE)[ipho], (*phoSigmaIEtaIEtaFull5x5)[ipho], (*phoPFChIso)[ipho], (*phoPFNeuIso)[ipho], (*phoPFPhoIso)[ipho], (*phoEt)[ipho], rho);
 
          //fill the histograms for barrels now.
