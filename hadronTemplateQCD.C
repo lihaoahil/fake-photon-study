@@ -10,6 +10,7 @@
 #include "TMath.h"
 #include "TLorentzVector.h"
 #include "include/photonCut.h"
+#include "include/printProgBar.h"
 
 void hadronTemplateQCD(){//main  
   
@@ -172,10 +173,12 @@ void hadronTemplateQCD(){//main
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
       {
-
-    if (ievt%10000==0) std::cout << " -- Processing event " << ievt << std::endl;
-        //std::cout << " -- Processing event " << ievt << std::endl;
-    
+        if (ievt%10000==0)
+            {
+              percent = 100*ievt/nEvts;
+              if(percent > 98) percent = 100;
+              printProgBar(percent, ievt);
+            }
 
 
     es->GetEntry(ievt);
