@@ -10,6 +10,7 @@
 #include "TMath.h"
 #include "TLorentzVector.h"
 #include "include/photonCut.h"
+#include "include/printProgBar.h"
 
 void hadronTemplateDY(){//main  
   
@@ -65,6 +66,7 @@ void hadronTemplateDY(){//main
     std::vector<Int_t>    *muCharge =0;
     std::vector<Int_t>    *muType =0;
     std::vector<bool>    *muIsTightID=0;
+
 
     float rho = 0;//rho
     ULong64_t  HLTEleMuX = 0; //HLT
@@ -168,14 +170,21 @@ void hadronTemplateDY(){//main
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
     nEvts = 200000;
+    int percent;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
       {
+        if (ievt%10000==0)
+        {
+          percent = 100*ievt/nEvts;
+          printProgBar(percent, ievt);
+        }
+        
 
-    if (ievt%10000==0) std::cout << " -- Processing event " << ievt << std::endl;
+      //if (ievt%10000==0) std::cout << " -- Processing event " << ievt << std::endl;
         //std::cout << " -- Processing event " << ievt << std::endl;
-    
+      
 
 
     es->GetEntry(ievt);
