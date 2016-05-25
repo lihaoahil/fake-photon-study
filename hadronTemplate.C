@@ -21,7 +21,7 @@ void hadronTemplate(){//main
   //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
-  TFile *hSample = new TFile("hadronicTemplateMCv1.root","RECREATE");
+  TFile *hSample = new TFile("template/hadronicTemplateMCv2.root","RECREATE");
 
     //gen-level
     int                    nMC=0;
@@ -167,7 +167,7 @@ void hadronTemplate(){//main
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    //nEvts = 200000;
+    nEvts = 200000;
  //--------------------------------------------------------------------------------------
  //loop over all the events
      for (unsigned ievt(0); ievt<nEvts; ++ievt)   
@@ -215,6 +215,7 @@ void hadronTemplate(){//main
         if(!isBarrel && !isEndCap) continue;
         if((*phoEt)[ipho]<25) continue;
         if((*phoEleVeto)[ipho] != 0 ) continue;
+        if((*phohasPixelSeed)[ipho] != 0) continue;
         decision = LooseCut((*phoEta)[ipho], (*phoHoverE)[ipho], (*phoSigmaIEtaIEtaFull5x5)[ipho], (*phoPFChIso)[ipho], (*phoPFNeuIso)[ipho], (*phoPFPhoIso)[ipho], (*phoEt)[ipho], rho);
 
          //fill the histograms for barrels now.
@@ -259,13 +260,13 @@ void hadronTemplate(){//main
               dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
               dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
               deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
-              if(deltaR2 > 0.05) continue;
-              if((*mcPID)[imc] != 22) continue;
-                  jetFlag=1;
+              //if(deltaR2 > 0.05) continue;
+              //if((*mcPID)[imc] != 22) continue;
+                  //jetFlag=1;
               //std::cout<<"event #"<< ievt <<"reco photon#"<<ipho<<" "<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
             }
-            if(jetFlag==0)continue;
+            //if(jetFlag==0)continue;
             hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
             hEBEt -> Fill ((*phoEt)[ipho]);
             for(unsigned ibin(0); ibin<16;ibin++)
