@@ -12,7 +12,7 @@
 void histoFit(){ //main
 
   TFile *gammaTemp = new TFile("template/gammaTemplateMC.root");
-  TFile *hadronTemp = new TFile("hadronicTemplateMCv1.root");
+  TFile *hadronTemp = new TFile("DYhadronicTemplateMC.root");
  
 
   Int_t binrange[] = {20,22,24,26,28,30,32,34,36,38,42,46,50,60,70,90,140};
@@ -48,7 +48,7 @@ void histoFit(){ //main
       dataName. Form("FitTarget_Pt_bin(%d,%d)",binrange[ibin],binrange[ibin+1]);
       mc0Name. Form("PhotonTemplate_Pt_bin(%d,%d)",binrange[ibin],binrange[ibin+1]);
       mc1Name. Form("HadronicTemplate_Pt_bin(%d,%d)",binrange[ibin],binrange[ibin+1]);
-      imageName. Form("test_result_v1/Pt_bin(%d,%d).png",binrange[ibin],binrange[ibin+1]);
+      imageName. Form("test_result_DY/Pt_bin(%d,%d).png",binrange[ibin],binrange[ibin+1]);
       histTitle1. Form("SigmaIEtaIEta template fits in Pt bin (%d,%d)",binrange[ibin],binrange[ibin+1]);
       histTitle2. Form("fit result");
       data = (TH1D*)hadronTemp->Get(dataName);//fit target
@@ -162,7 +162,7 @@ void histoFit(){ //main
   gr->GetYaxis()->SetRangeUser(0,1.0);
   gr->Draw("AP");
 
-  c1->SaveAs("test_result_v1/HadronFraction.png");
+  c1->SaveAs("test_result_DY/HadronFraction.png");
   //delete c1;
 
 
