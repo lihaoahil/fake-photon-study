@@ -169,7 +169,7 @@ void hadronTemplateDY(){//main
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
-    nEvts = 200000;
+    //nEvts = 200000;
     int percent;
  //--------------------------------------------------------------------------------------
  //loop over all the events
@@ -178,6 +178,7 @@ void hadronTemplateDY(){//main
         if (ievt%10000==0)
         {
           percent = 100*ievt/nEvts;
+          if(percent > 98) percent = 100;
           printProgBar(percent, ievt);
         }
         
