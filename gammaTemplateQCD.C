@@ -11,15 +11,16 @@
 #include "TLorentzVector.h"
 #include "include/photonCut.h"
 
-void gammaTemplate(){//main  
+void gammaTemplateQCD(){//main  
   
-  TChain *es =new TChain("ggNtuplizer/EventTree");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
+  //TChain *es =new TChain("ggNtuplizer/EventTree");
+  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
+  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
- 
+    TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
+    TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
-  TFile *gSample = new TFile("gammaTemplateMC.root","RECREATE");
+  TFile *gSample = new TFile("template/QCDgammaTemplateMC.root","RECREATE");
 
 
 
@@ -233,7 +234,7 @@ void gammaTemplate(){//main
      
      
      gSample->Write();
-     std::cout << "All histograms have been saved in gammaTemplate.root."<<std::endl;
+     std::cout << "All histograms have been saved in QCDgammaTemplateMC.root."<<std::endl;
     
   
 

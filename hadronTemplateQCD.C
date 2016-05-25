@@ -11,17 +11,17 @@
 #include "TLorentzVector.h"
 #include "include/photonCut.h"
 
-void hadronTemplate(){//main  
+void hadronTemplateQCD(){//main  
   
-  TChain *es =new TChain("ggNtuplizer/EventTree");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
-  es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
+  //TChain *es =new TChain("ggNtuplizer/EventTree");
+  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part1.root");
+  //es->Add("/export/cmss2/mengleis/SM/DYJetsToLL/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-part2.root");
 
-  //TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
-  //TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
+  TFile *file = new TFile("/export/cmss2/mengleis/SM/QCD/QCD_Pt-30to40_DoubleEMEnriched_MGG-80toInf.root");
+  TTree *es = (TTree*)file->Get("ggNtuplizer/EventTree");
 
 
-  TFile *hSample = new TFile("template/hadronicTemplateMCv2.root","RECREATE");
+  TFile *hSample = new TFile("template/QCDhadronicTemplateMC.root","RECREATE");
 
     //gen-level
     int                    nMC=0;
@@ -254,18 +254,18 @@ void hadronTemplate(){//main
           {
         
           if((*phoPFChIso)[ipho] >15) continue;//select hardronic template by put upper bound of I_ch.
-          dEta2=0;dPhi2=0;deltaR2=0;jetFlag=0;
-          for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
-            {
-              dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
-              dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
-              deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
+          //dEta2=0;dPhi2=0;deltaR2=0;jetFlag=0;
+          //for(unsigned imc(0); imc<nMC; imc++) //see if it can match a gen-level jet.
+            //{
+              //dEta2 = fabs((*phoEta)[ipho]-(*mcEta)[imc]);
+              //dPhi2 = fabs((*phoPhi)[ipho]-(*mcPhi)[imc]);
+              //deltaR2 = TMath::Sqrt(dEta2*dEta2+dPhi2*dPhi2);
               //if(deltaR2 > 0.05) continue;
               //if((*mcPID)[imc] != 22) continue;
                   //jetFlag=1;
               //std::cout<<"event #"<< ievt <<"reco photon#"<<ipho<<" "<<(*mcPID)[imc]<<"  "<<(*mcMomPID)[imc]<<"  "<<(*mcGMomPID)[imc]<<"  "<<deltaR2<<std::endl;
 
-            }
+            //}
             //if(jetFlag==0)continue;
             hEBSigmaIEtaIEta -> Fill((*phoSigmaIEtaIEtaFull5x5)[ipho]);
             hEBEt -> Fill ((*phoEt)[ipho]);
@@ -293,7 +293,7 @@ void hadronTemplate(){//main
      
      
      hSample->Write();
-     std::cout << "All histograms have been saved in hadronicTemplateMCv1.root."<<std::endl;
+     std::cout << "All histograms have been saved in QCDhadronicTemplateMC.root."<<std::endl;
     
      //std::cout<<counter<<std::endl;
        
