@@ -12,7 +12,7 @@
 void histoFit(){ //main
 
   TFile *gammaTemp = new TFile("template/gammaTemplateMC.root");
-  TFile *hadronTemp = new TFile("DYhadronicTemplateMC.root");
+  TFile *hadronTemp = new TFile("template/DYhadronicTemplateMC.root");
  
 
   Int_t binrange[] = {20,22,24,26,28,30,32,34,36,38,42,46,50,60,70,90,140};
