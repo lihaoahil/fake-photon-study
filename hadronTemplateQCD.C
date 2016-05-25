@@ -164,7 +164,7 @@ void hadronTemplateQCD(){//main
 
     Double_t dEta0, dEta1, dEta2, dPhi0, dPhi1, dPhi2, deltaR0, deltaR1, deltaR2;
     Int_t jetFlag(0);
-
+    int percent(0);
 
     unsigned nEvts = es->GetEntries(); 
     std::cout << " nEvts=" << nEvts << std::endl;
