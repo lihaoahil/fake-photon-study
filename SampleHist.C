@@ -17,6 +17,7 @@ void SampleHist(){ //main
   data->SetLineColor(kBlack);
   denom->SetLineColor(kRed);
   num->SetLineColor(kBlue);
+  denom->SetTitle("Samples_All_Pt_range");
 
 
   TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
@@ -25,6 +26,8 @@ void SampleHist(){ //main
   dataScaled->SetLineColor(kBlack);
   denomScaled->SetLineColor(kRed);
   numScaled->SetLineColor(kBlue);
+  denomScaled->SetTitle("Scaled samples_All_Pt_range");
+
   double norm = dataScaled -> GetEntries();
       double datascale = norm/dataScaled -> Integral();
       double denomscale = norm/denomScaled -> Integral();
@@ -36,19 +39,15 @@ void SampleHist(){ //main
       numScaled -> TH1::Scale(numscale);
   
   TCanvas *canvas = new TCanvas("canvas1","",1600,900);
-  
-  canvas->SetGrid();
- 
+  canvas->SetGrid(); 
   canvas->Divide(2);
   
   
 
-  canvas->cd(2);
-  denom->SetTitle("Samples_All_Pt_range");
-  denom->Draw();
+  canvas->cd(1);
+  denom->Draw("");
   data->Draw("same");
   num->Draw("same");
-
   TLegend *leg =  new TLegend(0.78,0.65,0.98,0.75);
     leg->AddEntry(data,"Fit Target");
     leg->AddEntry(denom,"Photon Template");
@@ -57,8 +56,7 @@ void SampleHist(){ //main
 
 
 
-  canvas->cd(1);
-  denomScaled->SetTitle("Scaled samples_All_Pt_range");
+  canvas->cd(2);
   denomScaled->Draw("");
   dataScaled->Draw("same");
   numScaled->Draw("same");
