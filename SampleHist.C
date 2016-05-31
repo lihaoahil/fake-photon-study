@@ -25,8 +25,8 @@ void SampleHist(){ //main
   data_scaled->SetLineColor(kBlack);
   denom_scaled->SetLineColor(kRed);
   num_scaled->SetLineColor(kBlue);
-  double norm = data -> GetEntries();
-      double datascale = norm/data -> Integral();
+  double norm = data_scaled -> GetEntries();
+      double datascale = norm/data_scaled -> Integral();
       double denomscale = norm/denom_scaled -> Integral();
       double numscale = norm/num_scaled -> Integral();
 
@@ -41,12 +41,12 @@ void SampleHist(){ //main
  
   c1->Divide(2);
   
-  data->SetTitle("Samples_All_Pt_range");
   
 
   c1->cd(1);
-  data->Draw();
-  denom->Draw("same");
+  denom->SetTitle("Samples_All_Pt_range");
+  denom->Draw();
+  data->Draw("same");
   num->Draw("same");
 
   TLegend *leg =  new TLegend(0.78,0.65,0.98,0.75);
@@ -56,11 +56,9 @@ void SampleHist(){ //main
     leg->Draw();
 
   c1->cd(2);
-
-  data_scaled->SetTitle("Scaled samples_All_Pt_range");
-  
-  data_scaled->Draw();
-  denom_scaled->Draw("same");
+  denom_scaled->SetTitle("Scaled samples_All_Pt_range");
+  denom_scaled->Draw();
+  data_scaled->Draw("same");
   num_scaled->Draw("same");
 
 
