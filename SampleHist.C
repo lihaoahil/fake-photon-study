@@ -35,7 +35,7 @@ void SampleHist(){ //main
       denom_scaled -> TH1::Scale(denomscale);
       num_scaled -> TH1::Scale(numscale);
   
-  TCanvas *canvas = new TCanvas("c1","",1600,900);
+  TCanvas *canvas = new TCanvas("canvas1","",1600,900);
   
   canvas->SetGrid();
  
@@ -43,7 +43,7 @@ void SampleHist(){ //main
   
   
 
-  canvas->cd(1);
+  canvas->cd(2);
   denom->SetTitle("Samples_All_Pt_range");
   denom->Draw();
   data->Draw("same");
@@ -55,9 +55,11 @@ void SampleHist(){ //main
     leg->AddEntry(num,"Hadron Template");
     leg->Draw();
 
-  canvas->cd(2);
+
+
+  canvas->cd(1);
   denom_scaled->SetTitle("Scaled samples_All_Pt_range");
-  denom_scaled->Draw();
+  denom_scaled->Draw("");
   data_scaled->Draw("same");
   num_scaled->Draw("same");
 
