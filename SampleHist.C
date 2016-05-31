@@ -4,20 +4,16 @@
 #include "TH1D.h"
 #include "TCanvas.h"
 #include "TLegend.h"
-#include "TLatex.h"
-#include "TMath.h"
-#include "TFractionFitter.h"
-#include "TObjArray.h"
-#include "TGraphErrors.h"
+
 void SampleHist(){ //main
 
   TFile *gammaTemp = new TFile("template/gammaTemplateMC.root");
   TFile *hadronTemp = new TFile("template/DYhadronicTemplateMCv2.root");
  
 
-  TH1D *data = (TH1D*)hadronTemp->Get(targetEBSigmaIEtaIEta);
-  TH1D *num = (TH1D*)hadronTemp->Get(hEBSigmaIEtaIEta);
-  TH1D *denom = (TH1D*)gammaTemp->Get(gammaEBSigmaIEtaIEta);
+  TH1D *data = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
+  TH1D *num = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
+  TH1D *denom = (TH1D*)gammaTemp->Get("gammaEBSigmaIEtaIEta");
   
   data->SetLineColor(kBlack);
   denom->SetLineColor(kRed);
