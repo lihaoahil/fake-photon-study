@@ -40,6 +40,7 @@ void SampleHist(){ //main
 
 
 
+canvas->cd(2);
 
 TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
   TH1D *numScaled = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
@@ -58,9 +59,9 @@ TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
       dataScaled -> TH1::Scale(datascale);
       denomScaled -> TH1::Scale(denomscale);
       numScaled -> TH1::Scale(numscale);
-      
 
-  canvas->cd(2);
+
+  
   denomScaled->Draw("");
   dataScaled->Draw("same");
   numScaled->Draw("same");
