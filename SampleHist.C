@@ -37,9 +37,9 @@ void SampleHist(){ //main
   
   TCanvas *c1 = new TCanvas("c1","",1600,900);
   
-  
+  c1->SetGrid();
  
-  c1>Divide(2);
+  c1->Divide(2);
   
   data->SetTitle("Samples_All_Pt_range");
   
