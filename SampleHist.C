@@ -13,7 +13,7 @@ void SampleHist(){ //main
 
   TH1D *data = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
   TH1D *num = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
-  TH1D *denom = (TH1D*)gammaTemp->Get("gammaEBSigmaIEtaIEta");
+  TH1D *denom = (TH1D*)gammaTemp->Get("GammaEBSigmaIEtaIEta");
   
   data->SetLineColor(kBlack);
   denom->SetLineColor(kRed);
