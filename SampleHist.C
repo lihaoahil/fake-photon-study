@@ -17,7 +17,7 @@ void SampleHist(){ //main
   data->SetLineColor(kBlack);
   denom->SetLineColor(kRed);
   num->SetLineColor(kBlue);
-  denom->SetTitle("Samples_All_Pt_range");
+  data->SetTitle("Samples_All_Pt_range");
 
   TH1D *dataScaled = (TH1D*)data->Clone();
   TH1D *numScaled = (TH1D*)num->Clone();
@@ -48,8 +48,8 @@ void SampleHist(){ //main
   
 
   canvas->cd(1);
-  denom->Draw("");
-  data->Draw("same");
+  data->Draw("");
+  denom->Draw("same");
   num->Draw("same");
   TLegend *leg =  new TLegend(0.78,0.65,0.98,0.75);
     leg->AddEntry(data,"Fit Target");
