@@ -57,9 +57,9 @@ void SampleHist(){ //main
 
 
   canvas->cd(2);
-  denomScaled->Draw("");
-  dataScaled->Draw("same");
-  numScaled->Draw("same");
+  //denomScaled->Draw("");
+  //dataScaled->Draw("same");
+  //numScaled->Draw("same");
 
 
   canvas->SaveAs("test_result_DY_v2/SampleHist.png");
