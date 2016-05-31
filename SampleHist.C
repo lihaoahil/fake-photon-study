@@ -29,21 +29,21 @@ void SampleHist(){ //main
       double datascale = norm/data_scaled -> Integral();
       double denomscale = norm/denom_scaled -> Integral();
       double numscale = norm/num_scaled -> Integral();
-
+      std::cout<< norm <<" " << datascale <<" "<<denomscale<<" "<<numscale<<std::endl;
       //data -> TH1::Sumw2();
       data_scaled -> TH1::Scale(datascale);
       denom_scaled -> TH1::Scale(denomscale);
       num_scaled -> TH1::Scale(numscale);
   
-  TCanvas *c1 = new TCanvas("c1","",1600,900);
+  TCanvas *canvas = new TCanvas("c1","",1600,900);
   
-  c1->SetGrid();
+  canvas->SetGrid();
  
-  c1->Divide(2);
+  canvas->Divide(2);
   
   
 
-  c1->cd(1);
+  canvas->cd(1);
   denom->SetTitle("Samples_All_Pt_range");
   denom->Draw();
   data->Draw("same");
@@ -55,15 +55,15 @@ void SampleHist(){ //main
     leg->AddEntry(num,"Hadron Template");
     leg->Draw();
 
-  c1->cd(2);
+  canvas->cd(2);
   denom_scaled->SetTitle("Scaled samples_All_Pt_range");
   denom_scaled->Draw();
   data_scaled->Draw("same");
   num_scaled->Draw("same");
 
 
-  c1->SaveAs("test_result_DY_v2/SampleHist.png");
-  //delete c1;
+  canvas->SaveAs("test_result_DY_v2/SampleHist.png");
+  delete canvas;
 
 
 
