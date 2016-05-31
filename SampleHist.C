@@ -20,23 +20,7 @@ void SampleHist(){ //main
   denom->SetTitle("Samples_All_Pt_range");
 
 
-  TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
-  TH1D *numScaled = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
-  TH1D *denomScaled = (TH1D*)gammaTemp->Get("GammaEBSigmaIEtaIEta");
-  dataScaled->SetLineColor(kBlack);
-  denomScaled->SetLineColor(kRed);
-  numScaled->SetLineColor(kBlue);
-  denomScaled->SetTitle("Scaled samples_All_Pt_range");
-
-  double norm = dataScaled -> GetEntries();
-      double datascale = norm/dataScaled -> Integral();
-      double denomscale = norm/denomScaled -> Integral();
-      double numscale = norm/numScaled -> Integral();
-      std::cout<< norm <<" " << datascale <<" "<<denomscale<<" "<<numscale<<std::endl;
-      //data -> TH1::Sumw2();
-      dataScaled -> TH1::Scale(datascale);
-      denomScaled -> TH1::Scale(denomscale);
-      numScaled -> TH1::Scale(numscale);
+  
   
   TCanvas *canvas = new TCanvas("canvas1","",1600,900);
   canvas->SetGrid(); 
@@ -56,10 +40,30 @@ void SampleHist(){ //main
 
 
 
+
+TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
+  TH1D *numScaled = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
+  TH1D *denomScaled = (TH1D*)gammaTemp->Get("GammaEBSigmaIEtaIEta");
+  dataScaled->SetLineColor(kBlack);
+  denomScaled->SetLineColor(kRed);
+  numScaled->SetLineColor(kBlue);
+  denomScaled->SetTitle("Scaled samples_All_Pt_range");
+
+  double norm = dataScaled -> GetEntries();
+      double datascale = norm/dataScaled -> Integral();
+      double denomscale = norm/denomScaled -> Integral();
+      double numscale = norm/numScaled -> Integral();
+      std::cout<< norm <<" " << datascale <<" "<<denomscale<<" "<<numscale<<std::endl;
+      //data -> TH1::Sumw2();
+      dataScaled -> TH1::Scale(datascale);
+      denomScaled -> TH1::Scale(denomscale);
+      numScaled -> TH1::Scale(numscale);
+      
+
   canvas->cd(2);
-  //denomScaled->Draw("");
-  //dataScaled->Draw("same");
-  //numScaled->Draw("same");
+  denomScaled->Draw("");
+  dataScaled->Draw("same");
+  numScaled->Draw("same");
 
 
   canvas->SaveAs("test_result_DY_v2/SampleHist.png");
