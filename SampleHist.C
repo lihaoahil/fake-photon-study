@@ -19,7 +19,26 @@ void SampleHist(){ //main
   num->SetLineColor(kBlue);
   denom->SetTitle("Samples_All_Pt_range");
 
+  TH1D *dataScaled = (TH1D*)data->Clone();
+  TH1D *numScaled = (TH1D*)num->Clone();
+  TH1D *denomScaled = (TH1D*)denom->Clone();
+  dataScaled->SetLineColor(kBlack);
+  denomScaled->SetLineColor(kRed);
+  numScaled->SetLineColor(kBlue);
+  denomScaled->SetTitle("Scaled samples_All_Pt_range");
 
+  double norm = dataScaled -> GetEntries();
+      double datascale = norm/dataScaled -> Integral();
+      double denomscale = norm/denomScaled -> Integral();
+      double numscale = norm/numScaled -> Integral();
+      std::cout<< norm <<" " << datascale <<" "<<denomscale<<" "<<numscale<<std::endl;
+      //data -> TH1::Sumw2();
+      dataScaled -> TH1::Scale(datascale);
+      denomScaled -> TH1::Scale(denomscale);
+      numScaled -> TH1::Scale(numscale);
+
+
+  
   
   
   TCanvas *canvas = new TCanvas("canvas1","",1600,900);
@@ -41,25 +60,6 @@ void SampleHist(){ //main
 
 
 canvas->cd(2);
-
-TH1D *dataScaled = (TH1D*)hadronTemp->Get("targetEBSigmaIEtaIEta");
-  TH1D *numScaled = (TH1D*)hadronTemp->Get("hEBSigmaIEtaIEta");
-  TH1D *denomScaled = (TH1D*)gammaTemp->Get("GammaEBSigmaIEtaIEta");
-  dataScaled->SetLineColor(kBlack);
-  denomScaled->SetLineColor(kRed);
-  numScaled->SetLineColor(kBlue);
-  denomScaled->SetTitle("Scaled samples_All_Pt_range");
-
-  double norm = dataScaled -> GetEntries();
-      double datascale = norm/dataScaled -> Integral();
-      double denomscale = norm/denomScaled -> Integral();
-      double numscale = norm/numScaled -> Integral();
-      std::cout<< norm <<" " << datascale <<" "<<denomscale<<" "<<numscale<<std::endl;
-      //data -> TH1::Sumw2();
-      dataScaled -> TH1::Scale(datascale);
-      denomScaled -> TH1::Scale(denomscale);
-      numScaled -> TH1::Scale(numscale);
-
 
   
   denomScaled->Draw("");
